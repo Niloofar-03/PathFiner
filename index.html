@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="PathFinder: an AI career-path app prototype. Sync your resume or LinkedIn, get a tailored roadmap, events, alumni and progress tracking.">
+<meta name="theme-color" content="#0B2545">
+<title>PathFinder · Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230B2545'/%3E%3Cpath d='M5 18c3.5 0 3.5-5 7-5s3.5-5 7-5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root { --ink: #0B1626; --muted: #5E6878; --line: #DCE1E8; --primary: #1E4FD8; --navy: #0B2545; --page: #E9EDF3; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--page); font-family: Inter, system-ui, sans-serif; color: var(--ink); }
+  .stage { min-height: 100%; display: flex; align-items: center; justify-content: center; gap: 56px; padding: 24px; }
+  .nav { width: 280px; flex-shrink: 0; align-self: center; }
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .brand-mark { width: 40px; height: 40px; border-radius: 12px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
+  .brand-name { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.4px; }
+  .lede { margin: 0 0 20px; font-size: 14px; line-height: 21px; color: var(--muted); }
+  .nav h2 { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); }
+  .nav ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .nav a { display: block; padding: 8px 12px; border-radius: 10px; font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; }
+  .nav a:hover { background: #DDE3EC; }
+  .nav a[aria-current="page"] { background: #FFFFFF; color: var(--primary); font-weight: 700; box-shadow: 0 1px 3px rgba(11,22,38,0.12); }
+  .hint { margin: 20px 0 0; font-size: 12.5px; line-height: 18px; color: var(--muted); }
+  .device-wrap { display: flex; justify-content: center; }
+  #device-holder { position: relative; }
+  #device { position: absolute; top: 0; left: 0; transform-origin: top left; width: 414px; height: 868px; padding: 12px; border-radius: 56px; background: #0B1626; box-shadow: 0 30px 80px rgba(11,22,38,0.28); }
+  #screen { width: 390px; height: 844px; border-radius: 44px; overflow: hidden; background: #F5F7FA; position: relative; }
+  @media (max-width: 960px) { .nav { display: none; } }
+  body.is-mobile { background: #F5F7FA; }
+  body.is-mobile .stage { padding: 0; min-height: 100vh; align-items: flex-start; }
+  body.is-mobile #device { width: 390px; height: 844px; padding: 0; border-radius: 0; box-shadow: none; background: transparent; }
+  body.is-mobile #screen { border-radius: 0; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <aside class="nav" aria-label="Screens">
+      <div class="brand">
+        <div class="brand-mark"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c4 0 4-6 8-6s4-6 8-6"></path><circle cx="20" cy="7" r="1.5"></circle><circle cx="4" cy="19" r="1.5"></circle></svg></div>
+        <span class="brand-name">PathFinder</span>
+      </div>
+      <p class="lede">Clickable prototype of an AI career-path app. Tap through the phone, or jump to any screen below.</p>
+      <h2>Screens</h2>
+      <ol id="screen-list"></ol>
+      <p class="hint">Sample data only. Names, companies and events are made up.</p>
+    </aside>
+    <main class="device-wrap">
+      <h1 class="sr-only">PathFinder app prototype</h1>
+      <div id="device-holder">
+        <div id="device"><div id="screen"></div></div>
+      </div>
+    </main>
+  </div>
+  <script src="vendor/preact.umd.js"></script>
+  <script src="screens.js"></script>
+  <script src="runtime.js"></script>
+</body>
+</html>

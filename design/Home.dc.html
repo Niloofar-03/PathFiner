@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 84px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 0 0; display: flex; flex-direction: column; gap: 20px">
+    <header style="padding: 0 20px; display: flex; align-items: center; justify-content: space-between">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div style="width: 44px; height: 44px; border-radius: 50%; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px">{{p.initials}}</div>
+        <div style="display: flex; flex-direction: column">
+          <span style="font-size: 13px; color: #5E6878">Good morning</span>
+          <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -0.3px">{{p.name}}</span>
+        </div>
+      </div>
+      <button aria-label="Notifications, 3 new" style="position: relative; width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E3E7ED; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A4556" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>
+        <span style="position: absolute; top: 9px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: #D9480F; border: 2px solid #FFFFFF"></span>
+      </button>
+    </header>
+
+    <div style="padding: 0 20px; display: flex; flex-direction: column; gap: 6px">
+      <span id="exlabel" style="font-size: 12px; font-weight: 600; color: #5E6878">Example roadmap for</span>
+      <div role="radiogroup" aria-labelledby="exlabel" style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #E9EDF3">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+          <button role="radio" aria-checked="{{t.checked}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{showGoal}}" hint-placeholder-val="{{true}}">
+    <a href="Checklist.dc.html" style="margin: 0 20px; background: #0B2545; border-radius: 20px; padding: 18px; color: #FFFFFF; text-decoration: none; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start">
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 12px; font-weight: 600; color: #9FB3D1; letter-spacing: 0.4px; text-transform: uppercase">{{p.goalLabel}}</span>
+          <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 19px; font-weight: 700">{{p.goal}}</span>
+        </div>
+        <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 30px; font-weight: 800; line-height: 1">{{p.pct}}</span>
+      </div>
+      <div style="height: 8px; border-radius: 4px; background: #1D3B66"><div style="width: {{p.pct}}; height: 8px; border-radius: 4px; background: #5BC0B0"></div></div>
+      <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: #C9D4E5">
+        <span>{{p.tasks}}</span><span>{{p.target}}</span>
+      </div>
+    </a>
+    </sc-if>
+
+    <sc-if value="{{showCareers}}" hint-placeholder-val="{{true}}">
+    <section style="display: flex; flex-direction: column; gap: 12px">
+      <div style="padding: 0 20px; display: flex; justify-content: space-between; align-items: baseline">
+        <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 700">Career matches for you</h2>
+        <a href="CareerDetail.dc.html" style="font-size: 13px; font-weight: 600; text-decoration: none">See all</a>
+      </div>
+      <div style="display: flex; gap: 10px; padding: 0 20px; overflow: hidden">
+        <sc-for list="{{careers}}" as="c" hint-placeholder-count="3">
+          <a href="CareerDetail.dc.html" style="flex-shrink: 0; width: 150px; background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: #0B1626">
+            <span style="align-self: flex-start; height: 24px; padding: 0 8px; border-radius: 12px; background: {{c.bg}}; color: {{c.fg}}; font-size: 12px; font-weight: 700; display: flex; align-items: center">{{c.match}} match</span>
+            <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15px; font-weight: 700; line-height: 20px">{{c.title}}</span>
+            <span style="font-size: 12px; color: #5E6878">{{c.alumni}} alumni in field</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+
+    <a href="DailyDrop.dc.html" style="margin: 0 20px; background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 14px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0B1626">
+      <div style="width: 44px; height: 44px; border-radius: 12px; background: #FDF1E3; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 14.5px; font-weight: 700">New events for you today</span>
+        <span style="font-size: 12.5px; color: #5E6878">1 hackathon · 2 workshops · 2 people to meet</span>
+      </div>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E6878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"></path></svg>
+    </a>
+
+    <section style="padding: 0 20px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 700">Your road map</h2>
+        <a href="Checklist.dc.html" style="font-size: 13px; font-weight: 600; text-decoration: none">Full plan</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 12.5px; color: #5E6878"><strong style="color: #0B1626">Next 2 months</strong> · built from your answers</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px">
+          <sc-for list="{{basis}}" as="b" hint-placeholder-count="5">
+            <span style="height: 26px; padding: 0 9px; border-radius: 13px; background: #E8EEFC; color: #1E4FD8; font-size: 12px; font-weight: 600; display: flex; align-items: center">{{b}}</span>
+          </sc-for>
+        </div>
+      </div>
+      <ol style="list-style: none; margin: 0; background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 16px 14px 4px">
+        <sc-for list="{{road}}" as="r" hint-placeholder-count="5">
+          <li style="display: flex; gap: 12px; align-items: stretch">
+            <div aria-hidden="true" style="width: 22px; display: flex; flex-direction: column; align-items: center; flex-shrink: 0">
+              <span style="{{r.dot}}">
+                <sc-if value="{{r.done}}" hint-placeholder-val="{{false}}">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg>
+                </sc-if>
+              </span>
+              <span style="{{r.line}}"></span>
+            </div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; padding-bottom: 16px">
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: {{r.whenColor}}">{{r.when}}</span>
+              <span style="font-size: 14.5px; font-weight: 700; color: #0B1626">{{r.title}}</span>
+              <span style="font-size: 13px; line-height: 18px; color: #3A4556">{{r.desc}}</span>
+              <span style="align-self: flex-start; margin-top: 3px; padding: 3px 8px; border-radius: 6px; background: #F5F7FA; border: 1px solid #E3E7ED; font-size: 11.5px; font-weight: 600; color: #5E6878">{{r.why}}</span>
+            </div>
+          </li>
+        </sc-for>
+      </ol>
+      <a href="Checklist.dc.html" style="height: 48px; border-radius: 12px; border: 1px solid #C9D7FA; background: #F3F6FE; color: #1E4FD8; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none">See full plan · {{moreCount}} more steps<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+    </section>
+
+    <sc-if value="{{showJobs}}" hint-placeholder-val="{{true}}">
+    <section style="padding: 0 20px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 700">Job recommendations</h2>
+        <a href="Home.dc.html" style="font-size: 13px; font-weight: 600; text-decoration: none">See all</a>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 0 14px">
+        <sc-for list="{{jobs}}" as="j" hint-placeholder-count="3">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #EEF1F5">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: {{j.tint}}; color: #FFFFFF; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">{{j.initial}}</div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 14.5px; font-weight: 600">{{j.title}}</span>
+              <span style="font-size: 12.5px; color: #5E6878">{{j.meta}}</span>
+              <span style="font-size: 12px; color: #0B5F54; font-weight: 600">{{j.why}}</span>
+            </div>
+            <span style="font-size: 12.5px; font-weight: 700; color: #0F7A6C">{{j.match}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+  </div>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #FFFFFF; border-top: 1px solid #E3E7ED; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; box-sizing: border-box">
+    <a href="Home.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #1E4FD8; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="DailyDrop.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Events</a>
+    <a href="Checklist.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"></path></svg>Roadmap</a>
+    <a href="Progress.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V4M19 20v-6"></path></svg>Progress</a>
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { who: 'grad' };
+  }
+  renderVals() {
+    const PROFILES = {
+      school: {
+        tab: 'High school', name: 'Maya Johnson', initials: 'MJ',
+        goalLabel: 'Dream career · University path', goal: 'Software Engineer', pct: '30%',
+        tasks: '2 of 6 milestones done', target: 'Start university Sep 2028',
+        basis: ['High school · Grade 11', 'Dream: Software Engineer', 'Coding', 'Gaming', 'Study full-time'],
+        careers: [
+          { title: 'Software Engineer', match: '94%', alumni: 52, bg: '#E3F3F0', fg: '#0B5F54' },
+          { title: 'Data Scientist', match: '82%', alumni: 24, bg: '#E8EEFC', fg: '#1E4FD8' },
+          { title: 'Game Developer', match: '79%', alumni: 11, bg: '#FDF1E3', fg: '#9A4508' }
+        ],
+        road: [
+          { st: 'done', when: 'Grade 11 · Done', title: 'Pick the prerequisite courses', desc: 'Grade 11 math, physics and an intro computer science course. Most CS and software engineering programs require senior math, and many recommend physics.', why: 'From: High school, Software Engineer' },
+          { st: 'done', when: 'Grade 11 · Done', title: 'Join the school coding club', desc: 'Weekly practice with peers, plus a teacher who can later write you a reference.', why: 'From: Coding' },
+          { st: 'now', when: 'Grade 11 · Now', title: 'Learn Python and ship a first project', desc: 'Finish a free beginner Python course, then publish a small game or club website on GitHub. Admissions and scholarship reviewers like to see real projects.', why: 'From: Coding, Gaming' },
+          { st: 'next', when: 'Feb–Mar 2027', title: 'Enter a computing contest or youth hackathon', desc: 'A national computing contest or a teen hackathon builds problem-solving skills and gives you achievements to list on applications.', why: 'From: Problem solving' },
+          { st: 'next', when: 'Grade 12 · Sep–Jan', title: 'Take Grade 12 calculus and apply to university', desc: 'Keep your math marks high, since competitive programs often admit in the high 80s to 90s. Apply to a mix of Reach, Target and Safe CS or Software Engineering programs before the winter deadlines.', why: 'From: Dream: Software Engineer' },
+          { st: 'next', when: 'Grade 12 · Feb–Jun', title: 'Apply for scholarships and accept an offer', desc: 'Offers usually arrive between February and May. Favour programs with co-op or internships so you graduate with real work experience.', why: 'From: Fast growth' },
+          { st: 'next', when: '2028 → 2032', title: 'Earn your degree and complete internships', desc: 'Aim for 2–3 internship or co-op terms, then apply for new-grad software engineer roles in your final year.', why: 'Goal: Software Engineer' }
+        ]
+      },
+      grad: {
+        tab: 'Post-Secondary', name: 'Alex Rivera', initials: 'AR',
+        goalLabel: 'Your goal · 6-month plan', goal: 'Backend Engineer', pct: '42%',
+        tasks: '9 of 21 tasks done', target: 'Target: May 2027',
+        jobs: [
+          { title: 'Junior Backend Engineer', meta: 'Northwind Labs · Remote', why: 'Matches: Java, SQL, REST APIs', match: '88%', initial: 'N', tint: '#1E4FD8' },
+          { title: 'Software Engineer, APIs', meta: 'Helio Systems · Hybrid', why: 'Matches: Python, Git, your API project', match: '84%', initial: 'H', tint: '#0F7A6C' },
+          { title: 'Graduate Platform Engineer', meta: 'Brightline · On-site', why: 'Matches: Linux, problem solving', match: '79%', initial: 'B', tint: '#0B2545' }
+        ],
+        basis: ['Post-Secondary · CS grad', 'Dream: Software Engineer', 'Coding', 'Problem solving', 'Remote work', 'Fast growth'],
+        careers: [
+          { title: 'Backend Engineer', match: '92%', alumni: 38, bg: '#E3F3F0', fg: '#0B5F54' },
+          { title: 'Data Engineer', match: '85%', alumni: 21, bg: '#E8EEFC', fg: '#1E4FD8' },
+          { title: 'Cloud / DevOps Engineer', match: '78%', alumni: 17, bg: '#FDF1E3', fg: '#9A4508' }
+        ],
+        road: [
+          { st: 'done', when: 'Nov · Done', title: 'Build a backend portfolio project', desc: 'A REST API with authentication, a PostgreSQL database and automated tests, live on GitHub with a clear README.', why: 'From: Coding' },
+          { st: 'now', when: 'Nov–Dec · Now', title: 'Practise coding interviews', desc: 'Solve 3–5 data structures and algorithms problems a week, and do 2 mock interviews a month. Most junior backend interviews include a coding round.', why: 'From: Problem solving' },
+          { st: 'next', when: 'Dec–Jan', title: 'Learn Docker, CI/CD and cloud deployment', desc: 'Containerise your project, add an automated test pipeline and deploy it to a cloud provider. An entry cloud certificate is a useful optional extra.', why: 'From: Remote work' },
+          { st: 'next', when: 'Jan–Feb', title: 'Network and ask for referrals', desc: 'Attend a hackathon and 2 meetups, and have short chats with at least 3 alumni in backend roles. Referrals greatly increase your chance of an interview.', why: 'From: Teamwork' },
+          { st: 'next', when: 'Feb–Mar', title: 'Learn system design basics', desc: 'API design, databases, caching and message queues: topics that junior backend interviews increasingly touch on.', why: 'Goal: Backend Engineer' },
+          { st: 'next', when: 'Mar–May', title: 'Apply and interview', desc: 'Send 10–15 tailored applications a week to junior and new-grad backend roles, focusing on fast-growing teams with remote options.', why: 'From: Fast growth, Remote work' }
+        ]
+      },
+      change: {
+        tab: 'Career change', name: 'Jordan Lee', initials: 'JL',
+        goalLabel: 'Career change · 9-month plan', goal: 'Data Analyst', pct: '20%',
+        tasks: '3 of 24 tasks done', target: 'Target: Aug 2027',
+        jobs: [
+          { title: 'Junior Data Analyst', meta: 'Fieldstone Retail Group · Hybrid', why: 'Matches: retail experience, Excel', match: '87%', initial: 'F', tint: '#1E4FD8' },
+          { title: 'Reporting Analyst', meta: 'Harbor Logistics · Remote', why: 'Matches: inventory reports, SQL (learning)', match: '82%', initial: 'H', tint: '#0F7A6C' },
+          { title: 'Business Operations Analyst', meta: 'Brightline · On-site', why: 'Matches: team leadership, operations', match: '78%', initial: 'B', tint: '#0B2545' }
+        ],
+        basis: ['Change career', 'Now: Retail store manager', 'Dream: Data Analyst', 'Data & spreadsheets', 'Leadership', 'Work full-time'],
+        careers: [
+          { title: 'Data Analyst', match: '90%', alumni: 29, bg: '#E3F3F0', fg: '#0B5F54' },
+          { title: 'Business Analyst', match: '86%', alumni: 33, bg: '#E8EEFC', fg: '#1E4FD8' },
+          { title: 'Operations Analyst', match: '81%', alumni: 14, bg: '#FDF1E3', fg: '#9A4508' }
+        ],
+        road: [
+          { st: 'done', when: 'Nov · Done', title: 'Map your transferable skills', desc: 'Sales reports, inventory forecasting, Excel and team leadership already overlap with analyst work. You confirmed the role in 2 chats with working analysts.', why: 'From: Retail & service, Data & spreadsheets' },
+          { st: 'now', when: 'Nov–Jan · Now', title: 'Master spreadsheets and SQL', desc: 'Advanced Excel (pivot tables, lookups, charts) and SQL (filters, joins, aggregations). These are the core skills in most analyst job posts.', why: 'From: Data & spreadsheets' },
+          { st: 'next', when: 'Dec–May', title: 'Earn an entry-level data analytics certificate', desc: 'A recognised online program takes about 6 months at roughly 10 hours a week, which fits around full-time work.', why: 'From: Work full-time' },
+          { st: 'next', when: 'Feb–May', title: 'Learn a BI tool and build 3 portfolio projects', desc: 'Use Tableau or Power BI. Make one project from your own industry, such as a retail sales dashboard, to show domain knowledge employers value.', why: 'From: Retail & service' },
+          { st: 'next', when: 'Apr–Jun', title: 'Do real analysis in your current job', desc: 'Volunteer for reporting work or ask about an internal move to an analytics team. Workplace results are the strongest proof on a career-change resume.', why: 'From: Leadership' },
+          { st: 'next', when: 'Jun–Aug', title: 'Rebrand and apply', desc: 'Retitle your resume and LinkedIn to Data Analyst, apply to junior and associate analyst roles, and practise SQL tests and case interviews.', why: 'Goal: Data Analyst' }
+        ]
+      }
+    };
+    const p = PROFILES[this.state.who];
+    const stages = p.road.slice(0, 3);
+    const moreCount = p.road.length - stages.length;
+    const road = stages.map((r, i) => ({
+      ...r,
+      done: r.st === 'done',
+      whenColor: r.st === 'now' ? '#1E4FD8' : (r.st === 'done' ? '#0B5F54' : '#5E6878'),
+      dot: 'width: 22px; height: 22px; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; display: flex; align-items: center; justify-content: center; ' + (r.st === 'done' ? 'background: #0F7A6C; border: 2px solid #0F7A6C' : (r.st === 'now' ? 'background: #FFFFFF; border: 6px solid #1E4FD8' : 'background: #FFFFFF; border: 2px solid #B9C3D3')),
+      line: 'width: 2px; flex: 1; min-height: 12px; background: ' + (i === stages.length - 1 ? 'transparent' : (r.st === 'done' ? '#0F7A6C' : '#D3D9E3'))
+    }));
+    return {
+      p: p,
+      basis: p.basis,
+      road: road,
+      moreCount: moreCount,
+      careers: p.careers,
+      showGoal: this.state.who !== 'school',
+      showCareers: this.state.who !== 'school',
+      showJobs: this.state.who !== 'school',
+      jobs: p.jobs || [],
+      tabs: Object.keys(PROFILES).map((k) => {
+        const on = k === this.state.who;
+        return {
+          label: PROFILES[k].tab,
+          checked: String(on),
+          pick: () => this.setState({ who: k }),
+          style: 'flex: 1; min-height: 40px; padding: 0 6px; border-radius: 10px; border: 0; cursor: pointer; font-family: inherit; font-size: 12.5px; font-weight: 600; ' + (on ? 'background: #FFFFFF; color: #1E4FD8; box-shadow: 0 1px 3px rgba(11,22,38,0.15)' : 'background: transparent; color: #3A4556')
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

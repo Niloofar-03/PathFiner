@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Career path and alumni</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 84px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Home.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E3E7ED; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #0B1626">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+      </a>
+      <button aria-label="Save career" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E3E7ED; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A4556" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>
+      </button>
+    </header>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="align-self: flex-start; height: 26px; padding: 0 10px; border-radius: 13px; background: #E3F3F0; color: #0B5F54; font-size: 12.5px; font-weight: 700; display: flex; align-items: center">92% match · Top pick</span>
+      <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.5px">Backend Engineer</h1>
+      <p style="margin: 0; font-size: 14px; line-height: 20px; color: #5E6878">Your Java and SQL projects plus API internship make this your strongest fit. Close 4 skill gaps to be job-ready.</p>
+    </div>
+
+    <section style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; font-weight: 700; color: #0B5F54; letter-spacing: 0.4px; text-transform: uppercase">Skills you have</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px">
+          <sc-for list="{{have}}" as="k" hint-placeholder-count="5">
+            <span style="height: 28px; padding: 0 10px; border-radius: 14px; background: #E3F3F0; color: #0B5F54; font-size: 12.5px; font-weight: 600; display: flex; align-items: center">{{k}}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="height: 1px; background: #EEF1F5"></div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; font-weight: 700; color: #9A4508; letter-spacing: 0.4px; text-transform: uppercase">Skills to build</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px">
+          <sc-for list="{{gaps}}" as="k" hint-placeholder-count="4">
+            <span style="height: 28px; padding: 0 10px; border-radius: 14px; background: #FDF1E3; color: #9A4508; font-size: 12.5px; font-weight: 600; display: flex; align-items: center">{{k}}</span>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 700">Alumni in this field</h2>
+        <span style="font-size: 13px; color: #5E6878">38 people</span>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 0 14px">
+        <sc-for list="{{alumni}}" as="a" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid #EEF1F5">
+            <div style="width: 42px; height: 42px; border-radius: 50%; background: {{a.tint}}; color: #FFFFFF; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">{{a.initials}}</div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+              <span style="font-size: 14.5px; font-weight: 600">{{a.name}}</span>
+              <span style="font-size: 12.5px; color: #5E6878">{{a.role}}</span>
+              <span style="font-size: 11.5px; color: #5E6878">{{a.school}}</span>
+            </div>
+            <button onClick="{{a.toggle}}" aria-pressed="{{a.pressed}}" style="{{a.btnStyle}}">{{a.btn}}</button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #FFFFFF; border-top: 1px solid #E3E7ED; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; box-sizing: border-box">
+    <a href="Home.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #1E4FD8; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="DailyDrop.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Events</a>
+    <a href="Checklist.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"></path></svg>Roadmap</a>
+    <a href="Progress.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V4M19 20v-6"></path></svg>Progress</a>
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sent: {} };
+  }
+  renderVals() {
+    const people = [
+      { id: 1, name: 'Priya Nair', initials: 'PN', role: 'Senior Backend Engineer · Northwind Labs', school: 'Class of 2019 · Computer Science', tint: '#1E4FD8' },
+      { id: 2, name: 'Marcus Chen', initials: 'MC', role: 'Platform Engineer · Helio Systems', school: 'Class of 2021 · Software Eng.', tint: '#0F7A6C' },
+      { id: 3, name: 'Sara Okafor', initials: 'SO', role: 'API Engineer · Brightline', school: 'Class of 2022 · Computer Science', tint: '#0B2545' },
+      { id: 4, name: 'Daniel Park', initials: 'DP', role: 'Backend Lead · Fieldstone', school: 'Class of 2016 · Mathematics', tint: '#9A4508' }
+    ];
+    const sent = this.state.sent;
+    return {
+      have: ['Java', 'Python', 'SQL', 'REST APIs', 'Git'],
+      gaps: ['Docker', 'Kubernetes', 'System design', 'AWS'],
+      alumni: people.map((p) => {
+        const on = !!sent[p.id];
+        return {
+          ...p,
+          btn: on ? 'Requested' : 'Connect',
+          pressed: String(on),
+          btnStyle: 'height: 36px; min-width: 88px; padding: 0 12px; border-radius: 18px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; ' + (on ? 'background: #FFFFFF; color: #3A4556; border: 1px solid #D3D9E3' : 'background: #1E4FD8; color: #FFFFFF; border: 1px solid #1E4FD8'),
+          toggle: () => this.setState({ sent: { ...sent, [p.id]: !on } })
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

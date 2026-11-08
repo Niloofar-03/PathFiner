@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Progress</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 84px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 16px">
+    <header style="display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; color: #5E6878">Updated after your feedback</span>
+      <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.5px">Your progress</h1>
+    </header>
+
+    <div role="status" style="background: #E3F3F0; border: 1px solid #BFE3DC; border-radius: 14px; padding: 12px 14px; display: flex; gap: 12px; align-items: center">
+      <div style="width: 36px; height: 36px; border-radius: 50%; background: #0F7A6C; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6 4 4 6-7"></path><path d="M15 8h5v5"></path></svg>
+      </div>
+      <p style="margin: 0; font-size: 13.5px; line-height: 19px; color: #0B4F46"><strong>+6% this week.</strong> Cloud Basics added AWS basics, Linux and Teamwork to your profile.</p>
+    </div>
+
+    <section style="background: #0B2545; border-radius: 20px; padding: 18px; color: #FFFFFF; display: flex; gap: 18px; align-items: center">
+      <div style="position: relative; width: 104px; height: 104px; flex-shrink: 0">
+        <svg role="img" aria-label="48 percent ready" width="104" height="104" viewBox="0 0 104 104"><circle cx="52" cy="52" r="44" fill="none" stroke="#1D3B66" stroke-width="10"></circle><circle cx="52" cy="52" r="44" fill="none" stroke="#5BC0B0" stroke-width="10" stroke-linecap="round" stroke-dasharray="133 276" transform="rotate(-90 52 52)"></circle></svg>
+        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+          <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 26px; font-weight: 800">48%</span>
+          <span style="font-size: 11px; color: #B8C6DB">ready</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 700">Backend Engineer</span>
+        <span style="font-size: 13px; line-height: 18px; color: #C9D4E5">12 tasks left · about 14 weeks to go</span>
+        <span style="align-self: flex-start; height: 24px; padding: 0 9px; border-radius: 12px; background: #1D3B66; color: #8FDACB; font-size: 12px; font-weight: 700; display: flex; align-items: center">On track for May 2027</span>
+      </div>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 16px; font-weight: 700">Skills toward the role</h2>
+      <sc-for list="{{skills}}" as="k" hint-placeholder-count="5">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; justify-content: space-between; font-size: 13px">
+            <span style="font-weight: 600">{{k.name}}</span>
+            <span style="color: #5E6878">{{k.label}}</span>
+          </div>
+          <div style="height: 8px; border-radius: 4px; background: #EEF1F5"><div style="width: {{k.width}}; height: 8px; border-radius: 4px; background: {{k.color}}"></div></div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15px; font-weight: 700">Also getting closer to</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <a href="CareerDetail.dc.html" style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: #0B1626"><span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 20px; font-weight: 800; color: #1E4FD8">39%</span><span style="font-size: 13px; font-weight: 600">Data Engineer</span></a>
+        <a href="CareerDetail.dc.html" style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: #0B1626"><span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 20px; font-weight: 800; color: #1E4FD8">33%</span><span style="font-size: 13px; font-weight: 600">Cloud Engineer</span></a>
+      </div>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; gap: 12px; align-items: flex-start">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #E3F3F0; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F7A6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h4"></path></svg>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 16px; font-weight: 700">Your resume, built as you grow</h2>
+          <p style="margin: 0; font-size: 13.5px; line-height: 19px; color: #5E6878">We'll turn your projects, events and new skills into a resume tailored to Backend Engineer roles.</p>
+        </div>
+      </div>
+      <sc-if value="{{notReady}}" hint-placeholder-val="{{true}}">
+        <button onClick="{{generate}}" style="height: 50px; border-radius: 12px; border: 0; cursor: pointer; background: #1E4FD8; color: #FFFFFF; font-family: inherit; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></svg>Generate my resume so far</button>
+      </sc-if>
+      <sc-if value="{{ready}}" hint-placeholder-val="{{false}}">
+        <div role="status" style="border: 1px solid #BFE3DC; background: #F2FAF8; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 14px; font-weight: 700; color: #0B5F54">Resume ready · Alex_Rivera_Resume.pdf</span>
+          <span style="font-size: 12.5px; line-height: 18px; color: #3A4556">Includes 3 projects, 2 events, 1 hackathon and 9 skills, including AWS basics and Linux.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+          <button style="height: 46px; border-radius: 12px; border: 0; cursor: pointer; background: #1E4FD8; color: #FFFFFF; font-family: inherit; font-weight: 600; font-size: 14px">Download PDF</button>
+          <button onClick="{{generate}}" style="height: 46px; border-radius: 12px; cursor: pointer; background: #FFFFFF; border: 1px solid #C9D1DE; color: #0B1626; font-family: inherit; font-weight: 600; font-size: 14px">Regenerate</button>
+        </div>
+      </sc-if>
+    </section>
+  </div>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #FFFFFF; border-top: 1px solid #E3E7ED; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; box-sizing: border-box">
+    <a href="Home.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="DailyDrop.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Events</a>
+    <a href="Checklist.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"></path></svg>Roadmap</a>
+    <a href="Progress.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #1E4FD8; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V4M19 20v-6"></path></svg>Progress</a>
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { ready: false };
+  }
+  renderVals() {
+    const raw = [
+      { name: 'REST APIs', v: 85 },
+      { name: 'Databases (SQL)', v: 70 },
+      { name: 'Cloud (AWS)', v: 45 },
+      { name: 'Docker & Kubernetes', v: 25 },
+      { name: 'System design', v: 20 }
+    ];
+    return {
+      ready: this.state.ready,
+      notReady: !this.state.ready,
+      generate: () => this.setState({ ready: true }),
+      skills: raw.map((k) => ({
+        name: k.name,
+        width: k.v + '%',
+        label: k.v >= 70 ? 'Strong · ' + k.v + '%' : (k.v >= 40 ? 'Growing · ' + k.v + '%' : 'Gap · ' + k.v + '%'),
+        color: k.v >= 70 ? '#0F7A6C' : (k.v >= 40 ? '#1E4FD8' : '#C2570C')
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

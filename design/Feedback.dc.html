@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Event feedback</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 128px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; align-items: center; gap: 12px">
+      <a href="Checklist.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E3E7ED; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #0B1626">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      </a>
+      <span style="font-size: 15px; font-weight: 600">Log what you did</span>
+    </header>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="align-self: flex-start; height: 24px; padding: 0 8px; border-radius: 6px; background: #E3F3F0; color: #0B5F54; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; display: flex; align-items: center">Workshop · Nov 3</span>
+      <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -0.4px">How did Cloud Basics go?</h1>
+    </div>
+
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; font-size: 13.5px; font-weight: 600; color: #3A4556">How useful was it?</h2>
+      <div role="radiogroup" aria-label="Usefulness rating" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{ratings}}" as="r" hint-placeholder-count="5">
+          <button role="radio" aria-checked="{{r.checked}}" aria-label="{{r.aria}}" onClick="{{r.pick}}" style="{{r.style}}">{{r.n}}</button>
+        </sc-for>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="did" style="font-size: 13.5px; font-weight: 600; color: #3A4556">What did you do or build?</label>
+      <textarea id="did" rows="3" style="resize: none; border-radius: 12px; border: 1px solid #D3D9E3; background: #FFFFFF; padding: 12px; font-family: inherit; font-size: 14px; line-height: 20px; color: #0B1626">Deployed a Flask API to a cloud VM and set up a managed Postgres database with my team.</textarea>
+    </div>
+
+    <section aria-labelledby="vtitle" style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; gap: 12px; align-items: flex-start">
+        <div style="width: 40px; height: 40px; border-radius: 12px; background: #E8EEFC; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E4FD8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h2 id="vtitle" style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 16px; font-weight: 700">Verify your skills</h2>
+          <p style="margin: 0; font-size: 13px; line-height: 18px; color: #5E6878">Our AI read your answer and found the skills below. Answer 3 quick questions to confirm you built them.</p>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px">
+        <sc-for list="{{detected}}" as="d" hint-placeholder-count="3">
+          <span style="height: 28px; padding: 0 10px; border-radius: 14px; background: #F3F6FE; border: 1px solid #C9D7FA; color: #1E4FD8; font-size: 12.5px; font-weight: 600; display: flex; align-items: center">Detected: {{d}}</span>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="proof" style="font-size: 13px; font-weight: 600; color: #3A4556">Proof of work (optional)</label>
+        <input id="proof" type="url" value="github.com/alexr/flask-notes-api" style="height: 44px; border-radius: 10px; border: 1px solid #D3D9E3; background: #FFFFFF; padding: 0 12px; font-family: inherit; font-size: 14px; color: #0B1626; box-sizing: border-box">
+        <span style="font-size: 12px; color: #0B5F54; font-weight: 600">Repo linked · 12 commits by you · README and deploy script found</span>
+      </div>
+      <sc-for list="{{quiz}}" as="qq" hint-placeholder-count="3">
+        <fieldset style="border: 0; margin: 0; padding: 12px 0 0; border-top: 1px solid #EEF1F5; display: flex; flex-direction: column; gap: 8px; min-width: 0">
+          <legend style="padding: 0; margin-bottom: 4px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: #1E4FD8">Question {{qq.num}} · {{qq.skill}}</legend>
+          <span style="font-size: 14px; line-height: 20px; font-weight: 600; color: #0B1626">{{qq.text}}</span>
+          <div role="radiogroup" aria-label="{{qq.text}}" style="display: flex; flex-direction: column; gap: 6px">
+            <sc-for list="{{qq.opts}}" as="o" hint-placeholder-count="3">
+              <button role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}" style="{{o.style}}">
+                <span style="{{o.dot}}"></span>
+                <span style="flex: 1">{{o.label}}</span>
+              </button>
+            </sc-for>
+          </div>
+          <sc-if value="{{qq.showFb}}" hint-placeholder-val="{{false}}">
+            <p style="{{qq.fbStyle}}">{{qq.fb}}</p>
+          </sc-if>
+        </fieldset>
+      </sc-for>
+      <sc-if value="{{notChecked}}" hint-placeholder-val="{{true}}">
+        <button onClick="{{check}}" style="height: 48px; border-radius: 12px; border: 0; cursor: pointer; background: #0B2545; color: #FFFFFF; font-family: inherit; font-size: 14.5px; font-weight: 600">Check my answers · {{answeredCount}}/3 answered</button>
+      </sc-if>
+      <sc-if value="{{isChecked}}" hint-placeholder-val="{{false}}">
+        <div role="status" style="border-radius: 12px; background: #F5F7FA; border: 1px solid #E3E7ED; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+          <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15px; font-weight: 700">{{scoreText}}</span>
+          <sc-for list="{{results}}" as="r" hint-placeholder-count="3">
+            <div style="display: flex; align-items: flex-start; gap: 8px">
+              <span style="{{r.badge}}">{{r.status}}</span>
+              <span style="flex: 1; font-size: 13px; line-height: 18px; color: #3A4556"><strong style="color: #0B1626">{{r.skill}}</strong> · {{r.note}}</span>
+            </div>
+          </sc-for>
+          <button onClick="{{retry}}" style="align-self: flex-start; min-height: 36px; padding: 0 4px; border: 0; background: none; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: #1E4FD8">Try again</button>
+        </div>
+      </sc-if>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; font-size: 13.5px; font-weight: 600; color: #3A4556">Skills you gained</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{skills}}" as="k" hint-placeholder-count="6">
+          <button aria-pressed="{{k.checked}}" onClick="{{k.toggle}}" style="{{k.style}}">{{k.label}}</button>
+        </sc-for>
+        <button style="height: 36px; padding: 0 12px; border-radius: 18px; border: 1px dashed #B9C3D3; background: transparent; color: #1E4FD8; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer">+ Add skill</button>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="met" style="font-size: 13.5px; font-weight: 600; color: #3A4556">Anyone you met? (optional)</label>
+      <input id="met" type="text" value="Marcus Chen · Platform Engineer" style="height: 46px; border-radius: 12px; border: 1px solid #D3D9E3; background: #FFFFFF; padding: 0 12px; font-family: inherit; font-size: 14px; color: #0B1626">
+    </div>
+  </div>
+  </div>
+
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 34px; display: flex; flex-direction: column; gap: 10px">
+    <p style="margin: 0; text-align: center; font-size: 12.5px; color: #0B5F54; font-weight: 600">{{gain}}</p>
+    <a href="Progress.dc.html" style="height: 52px; border-radius: 14px; background: #1E4FD8; color: #FFFFFF; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none">Save to my checklist</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  quizVals() {
+    const s = this.state;
+    const qs = [
+      { id: 'q1', skill: 'Flask API', text: 'Your Flask API runs on the VM. Which setup is right for real users?', opts: ['Run "flask run" with debug mode on', 'Run it with Gunicorn behind an Nginx reverse proxy', 'Start "python app.py" in a terminal and leave it open'], answer: 1, why: 'Flask\'s built-in server is for development only. A production WSGI server like Gunicorn, behind Nginx, handles real traffic safely.' },
+      { id: 'q2', skill: 'Cloud VM deployment', text: 'The API runs on the VM, but your browser can\'t reach it. What do you check first?', opts: ['That the firewall or security group allows inbound traffic on the port', 'Reinstall Python on the VM', 'Upgrade the VM to more RAM'], answer: 0, why: 'Cloud VMs block inbound ports by default. Opening the port (for example 80 or 443) in the security group is the usual fix.' },
+      { id: 'q3', skill: 'PostgreSQL', text: 'Where should the database password for your app live?', opts: ['Hard-coded in app.py', 'In an environment variable or a secrets manager', 'In the README so teammates can find it'], answer: 1, why: 'Secrets belong outside your code, in environment variables or a secrets manager, so they never end up in Git.' }
+    ];
+    const tips = { q1: 'Practise: deploy with Gunicorn and Nginx (Docker workshop, Nov 19)', q2: 'Practise: cloud networking and security groups', q3: 'Practise: managing config with environment variables' };
+    const answered = qs.filter((q) => s.quiz[q.id] !== undefined).length;
+    const correct = qs.filter((q) => s.quiz[q.id] === q.answer).length;
+    return {
+      answeredCount: answered,
+      notChecked: !s.checked,
+      isChecked: s.checked,
+      check: () => this.setState({ checked: true }),
+      retry: () => this.setState({ checked: false, quiz: {} }),
+      scoreText: correct + ' of 3 correct · ' + (correct === 3 ? 'all skills verified' : (correct === 0 ? 'keep practising' : 'partly verified')),
+      quiz: qs.map((q, i) => {
+        const pickedIdx = s.quiz[q.id];
+        const ok = pickedIdx === q.answer;
+        return {
+          num: i + 1,
+          skill: q.skill,
+          text: q.text,
+          showFb: s.checked,
+          fb: (ok ? 'Correct. ' : (pickedIdx === undefined ? 'Not answered. ' : 'Not quite. ')) + q.why,
+          fbStyle: 'margin: 0; padding: 10px 12px; border-radius: 10px; font-size: 12.5px; line-height: 18px; ' + (ok ? 'background: #E3F3F0; color: #0B4F46' : 'background: #FDF1E3; color: #7A3A06'),
+          opts: q.opts.map((label, j) => {
+            const on = pickedIdx === j;
+            const showRight = s.checked && j === q.answer;
+            const showWrong = s.checked && on && j !== q.answer;
+            const border = showRight ? '2px solid #0F7A6C' : (showWrong ? '2px solid #C2410C' : (on ? '2px solid #1E4FD8' : '1px solid #D3D9E3'));
+            const bg = showRight ? '#E3F3F0' : (showWrong ? '#FDF1E3' : (on ? '#F3F6FE' : '#FFFFFF'));
+            return {
+              label: label,
+              on: String(on),
+              pick: () => !s.checked && this.setState({ quiz: { ...s.quiz, [q.id]: j } }),
+              style: 'display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 12px; border-radius: 10px; cursor: pointer; text-align: left; font-family: inherit; font-size: 13.5px; line-height: 18px; color: #0B1626; background: ' + bg + '; border: ' + border,
+              dot: 'width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; box-sizing: border-box; border: ' + (on ? '5px solid #1E4FD8' : '2px solid #B9C3D3') + '; background: #FFFFFF'
+            };
+          })
+        };
+      }),
+      results: qs.map((q) => {
+        const ok = s.quiz[q.id] === q.answer;
+        return {
+          skill: q.skill,
+          status: ok ? 'Verified' : 'Practise',
+          note: ok ? 'added to your profile as a verified skill' : tips[q.id],
+          badge: 'flex-shrink: 0; height: 22px; padding: 0 8px; border-radius: 11px; font-size: 11px; font-weight: 700; display: flex; align-items: center; ' + (ok ? 'background: #0F7A6C; color: #FFFFFF' : 'background: #FDF1E3; color: #9A4508; border: 1px solid #F3C99B')
+        };
+      })
+    };
+  }
+  constructor(props) {
+    super(props);
+    this.state = { rating: 4, picked: { 'AWS basics': true, 'Linux': true, 'Teamwork': true }, quiz: {}, checked: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const labels = ['AWS basics', 'Docker', 'Linux', 'Networking', 'PostgreSQL', 'Teamwork'];
+    const count = labels.filter((l) => s.picked[l]).length;
+    return {
+      ratings: [1, 2, 3, 4, 5].map((n) => {
+        const on = n === s.rating;
+        return {
+          n: n,
+          aria: n + ' out of 5',
+          checked: String(on),
+          pick: () => this.setState({ rating: n }),
+          style: 'height: 48px; border-radius: 12px; cursor: pointer; font-family: inherit; font-size: 16px; font-weight: 700; ' + (on ? 'background: #1E4FD8; color: #FFFFFF; border: 1px solid #1E4FD8' : 'background: #FFFFFF; color: #3A4556; border: 1px solid #D3D9E3')
+        };
+      }),
+      skills: labels.map((l) => {
+        const on = !!s.picked[l];
+        return {
+          label: on ? '✓ ' + l : l,
+          checked: String(on),
+          toggle: () => this.setState({ picked: { ...s.picked, [l]: !on } }),
+          style: 'height: 36px; padding: 0 12px; border-radius: 18px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; ' + (on ? 'background: #E3F3F0; color: #0B5F54; border: 1px solid #9FD3C9' : 'background: #FFFFFF; color: #3A4556; border: 1px solid #D3D9E3')
+        };
+      }),
+      detected: ['Flask API', 'Cloud VM deployment', 'PostgreSQL'],
+      ...this.quizVals(),
+      gain: count + ' skills will be added · about +' + (count * 2) + '% readiness'
+    };
+  }
+}
+</script>
+</body>
+</html>

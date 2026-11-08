@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>About you: passions and interests</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+@keyframes pfpulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.6);opacity:0}}
+@keyframes pfwave{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+</style>
+</helmet>
+<div style="{{t.root}}">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 106px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; align-items: center; justify-content: space-between">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <div style="width: 34px; height: 34px; border-radius: 10px; background: #0B2545; display: flex; align-items: center; justify-content: center">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c4 0 4-6 8-6s4-6 8-6"></path><circle cx="20" cy="7" r="1.5"></circle><circle cx="4" cy="19" r="1.5"></circle></svg>
+        </div>
+        <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.3px">PathFinder</span>
+      </div>
+      <a href="Main.dc.html" style="{{t.skip}}">Skip</a>
+    </header>
+
+    <span style="{{t.eyebrow}}">About you</span>
+
+    <div role="group" aria-label="Accessibility" style="display: flex; gap: 8px">
+      <button aria-pressed="{{a11y.largeOn}}" onClick="{{a11y.toggleLarge}}" style="{{a11y.largeStyle}}">
+        <span aria-hidden="true" style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800">Aa</span>Larger text
+      </button>
+      <button aria-pressed="{{a11y.contrastOn}}" onClick="{{a11y.toggleContrast}}" style="{{a11y.contrastStyle}}">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18a9 9 0 0 0 0-18z" fill="currentColor"></path></svg>Contrast
+      </button>
+      <button aria-pressed="{{a11y.readOn}}" onClick="{{a11y.toggleRead}}" style="{{a11y.readStyle}}">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path></svg>{{a11y.readLabel}}
+      </button>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h1 id="qtitle" style="{{t.title}}">{{q.title}}</h1>
+      <p style="{{t.help}}">{{q.help}}</p>
+    </div>
+
+    <div role="radiogroup" aria-label="Answer by" style="{{t.segWrap}}">
+      <button role="radio" aria-checked="{{typeOn}}" onClick="{{pickType}}" style="{{t.segType}}">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"></path></svg>Type
+      </button>
+      <button role="radio" aria-checked="{{voiceOn}}" onClick="{{pickVoice}}" style="{{t.segVoice}}">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>Voice
+      </button>
+    </div>
+
+    <sc-if value="{{isType}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="answer" style="{{t.label}}">Your answer</label>
+        <textarea id="answer" rows="4" aria-describedby="qtitle" placeholder="{{q.placeholder}}" value="{{answer}}" onChange="{{onAnswer}}" style="{{t.textarea}}"></textarea>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isVoice}}" hint-placeholder-val="{{false}}">
+      <div style="{{t.voiceCard}}">
+        <div style="position: relative; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center">
+          <sc-if value="{{listening}}" hint-placeholder-val="{{false}}">
+            <span aria-hidden="true" style="position: absolute; inset: 0; border-radius: 50%; background: #1E4FD8; animation: pfpulse 1.4s ease-out infinite"></span>
+          </sc-if>
+          <button aria-label="{{micLabel}}" aria-pressed="{{listeningStr}}" onClick="{{toggleMic}}" style="{{t.mic}}">
+            <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+          </button>
+        </div>
+        <span style="{{t.micStatus}}">{{micStatus}}</span>
+        <sc-if value="{{listening}}" hint-placeholder-val="{{false}}">
+          <div aria-hidden="true" style="display: flex; align-items: center; gap: 4px; height: 28px">
+            <sc-for list="{{bars}}" as="b" hint-placeholder-count="9">
+              <span style="{{b.style}}"></span>
+            </sc-for>
+          </div>
+        </sc-if>
+        <div aria-live="polite" style="{{t.transcript}}">{{transcript}}</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{hasChips}}" hint-placeholder-val="{{false}}">
+      <div role="group" aria-label="Options" style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{chips}}" as="c" hint-placeholder-count="6">
+          <button aria-pressed="{{c.on}}" onClick="{{c.toggle}}" style="{{c.style}}">{{c.label}}</button>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+  </div>
+
+  <div style="{{t.footer}}">
+    <a href="Main.dc.html" style="{{t.nextLink}}">Continue</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: 0, mode: 'type', large: false, contrast: false, reading: false, listening: false, ans: { 0: '', 1: '', 2: '' }, picked: {} };
+  }
+  renderVals() {
+    const s = this.state;
+    const hc = s.contrast;
+    const k = s.large ? 1.2 : 1;
+    const px = (n) => Math.round(n * k) + 'px';
+    const C = {
+      bg: hc ? '#FFFFFF' : '#F5F7FA',
+      ink: hc ? '#000000' : '#0B1626',
+      muted: hc ? '#1F2937' : '#5E6878',
+      line: hc ? '#374151' : '#E3E7ED',
+      field: hc ? '#111827' : '#D3D9E3',
+      primary: hc ? '#0F2E8C' : '#1E4FD8',
+      soft: hc ? '#DCE5FB' : '#E8EEFC'
+    };
+    const qs = [
+      { title: "You don't have a resume? Don't worry, tell us about your dream career.", help: 'Describe the job you would love to have one day. We will build your plan from here, no resume needed.', placeholder: 'e.g. I want to build apps that help people learn…', sample: 'My dream is to work as a software engineer building apps that millions of people use, maybe at a startup.', chips: ['Software Engineer', 'Data Scientist', 'Product Designer', 'Entrepreneur', 'Game Developer', 'Not sure yet'] }
+    ];
+    const q = qs[s.q];
+    const answer = s.ans[s.q] || '';
+    const isVoice = s.mode === 'voice';
+    const pill = (on) => 'height: 40px; padding: 0 12px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: ' + px(12.5) + '; font-weight: 600; display: flex; align-items: center; gap: 6px; ' + (on ? 'background: ' + C.primary + '; color: #FFFFFF; border: 1px solid ' + C.primary : 'background: #FFFFFF; color: ' + C.ink + '; border: 1px solid ' + C.field);
+    const seg = (on) => 'flex: 1; height: 44px; border-radius: 10px; border: 0; cursor: pointer; font-family: inherit; font-size: ' + px(14) + '; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; ' + (on ? 'background: #FFFFFF; color: ' + C.primary + '; box-shadow: 0 1px 3px rgba(11,22,38,0.15)' : 'background: transparent; color: ' + C.muted);
+    const heights = [10, 18, 26, 14, 22, 28, 16, 24, 12];
+    return {
+      qNum: s.q + 1,
+      q: q,
+      answer: answer,
+      onAnswer: (e) => this.setState({ ans: { ...s.ans, [s.q]: e.target.value } }),
+      isType: !isVoice,
+      isVoice: isVoice,
+      typeOn: String(!isVoice),
+      voiceOn: String(isVoice),
+      pickType: () => this.setState({ mode: 'type', listening: false }),
+      pickVoice: () => this.setState({ mode: 'voice' }),
+      listening: s.listening,
+      listeningStr: String(s.listening),
+      micLabel: s.listening ? 'Stop recording' : 'Start recording your answer',
+      micStatus: s.listening ? 'Listening… tap to stop' : (answer ? 'Tap to record again' : 'Tap the mic and speak'),
+      toggleMic: () => s.listening ? this.setState({ listening: false, ans: { ...s.ans, [s.q]: q.sample } }) : this.setState({ listening: true }),
+      transcript: answer || 'Your words will appear here as you speak.',
+      bars: heights.map((h, i) => ({ style: 'width: 4px; height: ' + h + 'px; border-radius: 2px; background: ' + C.primary + '; animation: pfwave 0.9s ease-in-out ' + (i * 0.08) + 's infinite' })),
+      hasChips: q.chips.length > 0,
+      chips: q.chips.map((c) => {
+        const key = s.q + ':' + c;
+        const on = !!s.picked[key];
+        return {
+          label: on ? '✓ ' + c : c,
+          on: String(on),
+          toggle: () => this.setState({ picked: { ...s.picked, [key]: !on } }),
+          style: 'min-height: 40px; padding: 0 14px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: ' + px(13.5) + '; font-weight: 600; ' + (on ? 'background: ' + C.soft + '; color: ' + C.primary + '; border: 1.5px solid ' + C.primary : 'background: #FFFFFF; color: ' + C.ink + '; border: 1px solid ' + C.field)
+        };
+      }),
+      a11y: {
+        largeOn: String(s.large),
+        contrastOn: String(s.contrast),
+        readOn: String(s.reading),
+        readLabel: s.reading ? 'Reading…' : 'Read aloud',
+        toggleLarge: () => this.setState({ large: !s.large }),
+        toggleContrast: () => this.setState({ contrast: !s.contrast }),
+        toggleRead: () => this.setState({ reading: !s.reading }),
+        largeStyle: pill(s.large),
+        contrastStyle: pill(s.contrast),
+        readStyle: pill(s.reading)
+      },
+      firstStr: String(s.q === 0),
+      notLast: s.q < 2,
+      isLast: s.q === 2,
+      back: () => s.q > 0 && this.setState({ q: s.q - 1, listening: false, reading: false }),
+      next: () => this.setState({ q: Math.min(2, s.q + 1), listening: false, reading: false }),
+      t: {
+        root: 'width: 390px; height: 844px; position: relative; overflow: hidden; background: ' + C.bg + '; font-family: Inter, system-ui, sans-serif; color: ' + C.ink + '; box-sizing: border-box',
+        skip: 'min-height: 44px; padding: 0 6px; display: flex; align-items: center; font-size: ' + px(14) + '; font-weight: 600; text-decoration: none; color: ' + C.primary,
+        eyebrow: 'font-size: ' + px(12.5) + '; font-weight: 700; color: ' + C.primary + '; letter-spacing: 0.4px; text-transform: uppercase',
+        track: 'height: 6px; border-radius: 3px; background: ' + C.line,
+        fill: 'height: 6px; border-radius: 3px; width: ' + Math.round(((s.q + 1) / 3) * 100) + '%; background: ' + C.primary,
+        title: "margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: " + px(25) + '; line-height: 1.25; font-weight: 800; letter-spacing: -0.4px; color: ' + C.ink,
+        help: 'margin: 0; font-size: ' + px(14.5) + '; line-height: 1.45; color: ' + C.muted,
+        segWrap: 'display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: ' + (hc ? '#E5E7EB' : '#E9EDF3'),
+        segType: seg(!isVoice),
+        segVoice: seg(isVoice),
+        label: 'font-size: ' + px(13.5) + '; font-weight: 600; color: ' + C.ink,
+        textarea: 'resize: none; border-radius: 12px; border: 1.5px solid ' + C.field + '; background: #FFFFFF; padding: 12px; font-family: inherit; font-size: ' + px(15) + '; line-height: 1.45; color: ' + C.ink,
+        voiceCard: 'background: #FFFFFF; border: 1px solid ' + C.line + '; border-radius: 18px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; gap: 12px',
+        mic: 'position: relative; width: 72px; height: 72px; border-radius: 50%; border: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; background: ' + (s.listening ? '#C2410C' : C.primary),
+        micStatus: 'font-size: ' + px(13.5) + '; font-weight: 600; color: ' + C.ink,
+        transcript: 'align-self: stretch; min-height: 56px; border-radius: 12px; padding: 12px; box-sizing: border-box; background: ' + (hc ? '#F3F4F6' : '#F5F7FA') + '; font-size: ' + px(14.5) + '; line-height: 1.45; color: ' + (answer ? C.ink : C.muted),
+        footer: 'position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 20px 34px; display: flex; gap: 10px; background: ' + C.bg + '; border-top: 1px solid ' + C.line,
+        back: 'width: 110px; height: 52px; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: ' + px(15) + '; font-weight: 600; background: #FFFFFF; border: 1px solid ' + C.field + '; color: ' + (s.q === 0 ? C.muted : C.ink) + '; opacity: ' + (s.q === 0 ? '0.6' : '1'),
+        next: 'flex: 1; height: 52px; border-radius: 14px; border: 0; cursor: pointer; font-family: inherit; font-size: ' + px(15) + '; font-weight: 600; background: ' + C.primary + '; color: #FFFFFF',
+        nextLink: 'flex: 1; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: ' + px(15) + '; font-weight: 600; background: ' + C.primary + '; color: #FFFFFF'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

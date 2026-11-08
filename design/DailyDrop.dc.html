@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Events</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 84px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 0 0; display: flex; flex-direction: column; gap: 14px">
+    <header style="padding: 0 20px; display: flex; align-items: flex-end; justify-content: space-between">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 13px; color: #5E6878">Saturday, November 7</span>
+        <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.5px">Events</h1>
+      </div>
+      <span style="height: 28px; padding: 0 10px; border-radius: 14px; background: #FDF1E3; color: #9A4508; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px">
+        <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-7 1 2 2 3 3 3 0-3-1-5 0-8z"></path></svg>
+        12-day streak
+      </span>
+    </header>
+
+    <div style="margin: 0 20px; background: #0B2545; border-radius: 16px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; color: #FFFFFF">
+      <div style="width: 36px; height: 36px; border-radius: 10px; background: #1D3B66; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5BC0B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg>
+      </div>
+      <p style="margin: 0; font-size: 13.5px; line-height: 19px; color: #DCE4F0"><strong style="color: #FFFFFF">On track for Backend Engineer.</strong> These picks close your Docker and system design gaps this week.</p>
+    </div>
+
+    <div role="tablist" aria-label="Filter events" style="display: flex; gap: 8px; padding: 0 20px; overflow-x: auto; scrollbar-width: none">
+      <sc-for list="{{filters}}" as="f" hint-placeholder-count="6">
+        <button role="tab" aria-selected="{{f.selected}}" onClick="{{f.pick}}" style="{{f.style}}">{{f.label}}</button>
+      </sc-for>
+    </div>
+
+    <div role="group" aria-label="Status" style="display: flex; align-items: center; gap: 8px; padding: 0 20px">
+      <span style="font-size: 12.5px; font-weight: 600; color: #5E6878">Status</span>
+      <sc-for list="{{statuses}}" as="st" hint-placeholder-count="2">
+        <button aria-pressed="{{st.on}}" onClick="{{st.pick}}" style="{{st.style}}">
+          <span style="{{st.dot}}"></span>{{st.label}}
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="padding: 0 20px; display: flex; flex-direction: column; gap: 10px">
+      <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+        <p style="margin: 0; padding: 24px 16px; text-align: center; background: #FFFFFF; border: 1px dashed #C9D1DE; border-radius: 16px; font-size: 14px; color: #5E6878">{{emptyText}}</p>
+      </sc-if>
+      <sc-for list="{{events}}" as="e" hint-placeholder-count="3">
+        <article style="{{e.cardStyle}}">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 6px">
+              <span style="height: 22px; padding: 0 8px; border-radius: 6px; background: {{e.bg}}; color: {{e.fg}}; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; display: flex; align-items: center">{{e.type}}</span>
+              <sc-if value="{{e.hasStatus}}" hint-placeholder-val="{{false}}">
+                <span style="{{e.statusStyle}}">{{e.status}}</span>
+              </sc-if>
+            </div>
+            <span style="font-size: 12px; color: #5E6878">{{e.when}}</span>
+          </div>
+          <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 16px; font-weight: 700; color: {{e.titleColor}}">{{e.title}}</h2>
+          <span style="font-size: 12.5px; color: #5E6878">{{e.where}}</span>
+
+          <sc-if value="{{e.live}}" hint-placeholder-val="{{true}}">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+                <span style="font-size: 12.5px; color: #0B5F54; font-weight: 600">Builds: {{e.builds}}</span>
+                <button onClick="{{e.toggle}}" aria-pressed="{{e.pressed}}" style="{{e.btnStyle}}">{{e.btn}}</button>
+              </div>
+              <button onClick="{{e.calToggle}}" aria-pressed="{{e.calPressed}}" style="{{e.calStyle}}">
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+                {{e.calLabel}}
+              </button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{e.expired}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+              <span style="font-size: 12.5px; color: #5E6878">This event has ended.</span>
+              <a href="Feedback.dc.html" style="height: 36px; padding: 0 12px; border-radius: 18px; border: 1px solid #C9D1DE; background: #FFFFFF; color: #0B1626; font-size: 12.5px; font-weight: 600; display: flex; align-items: center; text-decoration: none; flex-shrink: 0">{{e.endAction}}</a>
+            </div>
+          </sc-if>
+        </article>
+      </sc-for>
+    </div>
+
+    <a href="CareerDetail.dc.html" style="margin: 0 20px; background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0B1626">
+      <div style="display: flex">
+        <span style="width: 34px; height: 34px; border-radius: 50%; background: #1E4FD8; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 2px solid #FFFFFF">PN</span>
+        <span style="width: 34px; height: 34px; margin-left: -10px; border-radius: 50%; background: #0F7A6C; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 2px solid #FFFFFF">MC</span>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+        <span style="font-size: 14px; font-weight: 700">2 alumni to meet today</span>
+        <span style="font-size: 12px; color: #5E6878">Both attending API Build Weekend</span>
+      </div>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E6878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"></path></svg>
+    </a>
+  </div>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #FFFFFF; border-top: 1px solid #E3E7ED; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; box-sizing: border-box">
+    <a href="Home.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="DailyDrop.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #1E4FD8; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Events</a>
+    <a href="Checklist.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"></path></svg>Roadmap</a>
+    <a href="Progress.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V4M19 20v-6"></path></svg>Progress</a>
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'All', status: '', added: { 1: true, 4: true, 6: true, 7: true }, cal: { 1: true } };
+  }
+  renderVals() {
+    const s = this.state;
+    const types = {
+      Hackathon: { bg: '#E8EEFC', fg: '#1E4FD8' },
+      Workshop: { bg: '#E3F3F0', fg: '#0B5F54' },
+      Meetup: { bg: '#FDF1E3', fg: '#9A4508' }
+    };
+    const all = [
+      { id: 1, type: 'Hackathon', title: 'API Build Weekend', when: 'Nov 14–15', where: 'Innovation Hub, Downtown · 48 hrs · Teams of 4', builds: 'REST APIs, PostgreSQL' },
+      { id: 2, type: 'Workshop', title: 'Docker & Kubernetes, hands-on', when: 'Nov 19 · 6 PM', where: 'Online · 2 hrs · Free', builds: 'Docker, Kubernetes' },
+      { id: 3, type: 'Meetup', title: 'Backend Engineers Night', when: 'Nov 21 · 7 PM', where: 'Tech Commons · 40 attending', builds: 'Networking, System design' },
+      { id: 4, type: 'Workshop', title: 'Cloud Basics workshop', when: 'Nov 3', where: 'Online · 2 hrs · Free', builds: 'AWS basics, Linux', expired: true },
+      { id: 5, type: 'Meetup', title: 'Startup Careers Fair', when: 'Oct 29', where: 'City Library · 25 employers', builds: 'Networking', expired: true },
+      { id: 6, type: 'Hackathon', title: 'Fall Code Jam', when: 'Oct 18–19', where: 'Westbridge University · 24 hrs', builds: 'Teamwork, APIs', expired: true },
+      { id: 7, type: 'Meetup', title: 'Women in Tech coffee chat', when: 'Nov 26 · 9 AM', where: 'Harbor Café · 15 attending', builds: 'Networking, Mentorship' }
+    ];
+    const filterNames = ['All', 'Hackathons', 'Workshops', 'Meetups'];
+    const typeOf = { Hackathons: 'Hackathon', Workshops: 'Workshop', Meetups: 'Meetup' };
+    const isAdded = (e) => !!s.added[e.id];
+    const inType = (e, f) => f === 'All' || e.type === typeOf[f];
+    const status = s.status || '';
+    const keep = (e) => {
+      if (!inType(e, s.filter)) return false;
+      if (status === 'Added') return isAdded(e) && !e.expired;
+      if (status === 'Expired') return !!e.expired;
+      return true;
+    };
+    const pill = (on) => 'height: 36px; padding: 0 14px; flex-shrink: 0; border-radius: 18px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; ' + (on ? 'background: #0B2545; color: #FFFFFF; border: 1px solid #0B2545' : 'background: #FFFFFF; color: #3A4556; border: 1px solid #D3D9E3');
+    const cal = s.cal || {};
+    const list = all.filter(keep).sort((a, b) => (a.expired ? 1 : 0) - (b.expired ? 1 : 0));
+    const inCur = all.filter((e) => inType(e, s.filter));
+    const countAdded = inCur.filter((e) => isAdded(e) && !e.expired).length;
+    const countExpired = inCur.filter((e) => e.expired).length;
+    const statusPill = (name, on) => 'height: 34px; padding: 0 12px; border-radius: 17px; cursor: pointer; font-family: inherit; font-size: 12.5px; font-weight: 600; display: flex; align-items: center; gap: 6px; ' + (on ? (name === 'Added' ? 'background: #E3F3F0; color: #0B5F54; border: 1.5px solid #0F7A6C' : 'background: #EEF1F5; color: #0B1626; border: 1.5px solid #5E6878') : 'background: #FFFFFF; color: #3A4556; border: 1px solid #D3D9E3');
+    return {
+      filters: filterNames.map((f) => ({
+        label: f,
+        selected: String(f === s.filter),
+        style: pill(f === s.filter),
+        pick: () => this.setState({ filter: f })
+      })),
+      statuses: ['Added', 'Expired'].map((n) => {
+        const on = status === n;
+        return {
+          label: n + ' · ' + (n === 'Added' ? countAdded : countExpired),
+          on: String(on),
+          style: statusPill(n, on),
+          dot: 'width: 8px; height: 8px; border-radius: 50%; background: ' + (n === 'Added' ? '#0F7A6C' : '#8A94A4'),
+          pick: () => this.setState({ status: on ? '' : n })
+        };
+      }),
+      empty: list.length === 0,
+      emptyText: status === 'Added' ? 'Nothing added here yet. Tap "Add to plan" on an event to save it.' : (status === 'Expired' ? 'No past events in this category.' : 'No events here right now.'),
+      events: list.map((e) => {
+        const on = isAdded(e);
+        const expired = !!e.expired;
+        const status = expired ? 'Expired' : (on ? 'Added' : '');
+        return {
+          ...e,
+          bg: expired ? '#EEF1F5' : types[e.type].bg,
+          fg: expired ? '#5E6878' : types[e.type].fg,
+          live: !expired,
+          expired: expired,
+          hasStatus: !!status,
+          status: status,
+          statusStyle: 'height: 22px; padding: 0 8px; border-radius: 11px; font-size: 11px; font-weight: 700; display: flex; align-items: center; ' + (expired ? 'background: #EEF1F5; color: #5E6878; border: 1px solid #D3D9E3' : 'background: #E3F3F0; color: #0B5F54; border: 1px solid #BFE3DC'),
+          titleColor: expired ? '#5E6878' : '#0B1626',
+          cardStyle: 'border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 8px; ' + (expired ? 'background: #F9FAFB; border: 1px solid #E3E7ED' : 'background: #FFFFFF; border: 1px solid ' + (on ? '#9FD3C9' : '#E3E7ED')),
+          endAction: on ? 'Log feedback' : 'See recap',
+          btn: on ? 'In your plan' : 'Add to plan',
+          pressed: String(on),
+          btnStyle: 'height: 36px; padding: 0 14px; border-radius: 18px; cursor: pointer; font-family: inherit; font-size: 12.5px; font-weight: 600; flex-shrink: 0; ' + (on ? 'background: #E3F3F0; color: #0B5F54; border: 1px solid #BFE3DC' : 'background: #1E4FD8; color: #FFFFFF; border: 1px solid #1E4FD8'),
+          toggle: () => this.setState({ added: { ...s.added, [e.id]: !on } }),
+          calPressed: String(!!cal[e.id]),
+          calLabel: cal[e.id] ? 'Added to my calendar · reminder 1 day before' : 'Add to my calendar',
+          calToggle: () => this.setState({ cal: { ...cal, [e.id]: !cal[e.id] } }),
+          calStyle: 'height: 40px; border-radius: 10px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; ' + (cal[e.id] ? 'background: #E3F3F0; color: #0B5F54; border: 1px solid #BFE3DC' : 'background: #FFFFFF; color: #0B1626; border: 1px solid #D3D9E3')
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

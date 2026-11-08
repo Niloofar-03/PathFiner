@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tell us about you</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 100px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 20px">
+    <header style="display: flex; align-items: center; justify-content: space-between">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <div style="width: 34px; height: 34px; border-radius: 10px; background: #0B2545; display: flex; align-items: center; justify-content: center">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c4 0 4-6 8-6s4-6 8-6"></path><circle cx="20" cy="7" r="1.5"></circle><circle cx="4" cy="19" r="1.5"></circle></svg>
+        </div>
+        <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.3px">PathFinder</span>
+      </div>
+      <a href="Main.dc.html" style="min-height: 44px; padding: 0 6px; display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #1E4FD8; text-decoration: none">Skip</a>
+    </header>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 12.5px; font-weight: 700; color: #1E4FD8; letter-spacing: 0.4px; text-transform: uppercase">{{eyebrow}}</span>
+      <div role="progressbar" aria-label="Questions answered" aria-valuemin="0" aria-valuemax="7" aria-valuenow="{{answered}}" style="height: 6px; border-radius: 3px; background: #E3E7ED"><div style="{{fillStyle}}"></div></div>
+    </div>
+
+    <sc-if value="{{notSummary}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <h1 id="qtitle" style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 25px; line-height: 31px; font-weight: 800; letter-spacing: -0.4px">{{q.title}}</h1>
+          <p style="margin: 0; font-size: 14.5px; line-height: 21px; color: #5E6878">{{q.help}}</p>
+          <span style="font-size: 12.5px; font-weight: 600; color: #3A4556">{{q.hint}}</span>
+        </div>
+        <div role="group" aria-labelledby="qtitle" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+          <sc-for list="{{opts}}" as="o" hint-placeholder-count="6">
+            <button role="{{o.role}}" aria-checked="{{o.checked}}" onClick="{{o.toggle}}" style="{{o.style}}">
+              <span style="{{o.box}}">
+                <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg>
+              </span>
+              <span style="font-size: 14px; line-height: 18px; font-weight: 600; color: #0B1626">{{o.label}}</span>
+            </button>
+          </sc-for>
+        </div>
+        <sc-if value="{{otherOn}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="other" style="font-size: 13.5px; font-weight: 600; color: #0B1626">Tell us your own answer</label>
+            <input id="other" type="text" placeholder="{{otherPlaceholder}}" value="{{otherText}}" onChange="{{onOther}}" style="height: 50px; border-radius: 12px; border: 1.5px solid #1E4FD8; background: #FFFFFF; padding: 0 14px; font-family: inherit; font-size: 15px; color: #0B1626; box-sizing: border-box">
+            <span style="font-size: 12px; color: #5E6878">Separate several answers with commas.</span>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isSummary}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 25px; line-height: 31px; font-weight: 800; letter-spacing: -0.4px">Here's your profile</h1>
+          <p style="margin: 0; font-size: 14.5px; line-height: 21px; color: #5E6878">We'll use this to build a roadmap tailored to you. You can change it anytime in Profile.</p>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 4px 14px">
+          <sc-for list="{{summary}}" as="row" hint-placeholder-count="7">
+            <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 0; border-bottom: 1px solid #EEF1F5">
+              <div style="display: flex; justify-content: space-between; align-items: center">
+                <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: #5E6878">{{row.label}}</span>
+                <button onClick="{{row.edit}}" aria-label="{{row.editLabel}}" style="min-height: 32px; padding: 0 6px; border: 0; background: none; cursor: pointer; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1E4FD8">Edit</button>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                <sc-for list="{{row.items}}" as="it" hint-placeholder-count="3">
+                  <span style="height: 28px; padding: 0 10px; border-radius: 14px; background: #E8EEFC; color: #1E4FD8; font-size: 12.5px; font-weight: 600; display: flex; align-items: center">{{it}}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <section aria-labelledby="moreq" style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <h2 id="moreq" style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 700">Do you want to add more?</h2>
+            <p style="margin: 0; font-size: 13.5px; line-height: 19px; color: #5E6878">The more we know, the better your roadmap fits you.</p>
+          </div>
+          <div role="radiogroup" aria-labelledby="moreq" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+            <button role="radio" aria-checked="{{moreYes}}" onClick="{{pickYes}}" style="{{yesStyle}}">Yes, add more</button>
+            <button role="radio" aria-checked="{{moreNo}}" onClick="{{pickNo}}" style="{{noStyle}}">No, I'm done</button>
+          </div>
+          <sc-if value="{{showMore}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <span style="font-size: 12.5px; font-weight: 600; color: #3A4556">What would you like to add?</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                <sc-for list="{{jumps}}" as="j" hint-placeholder-count="4">
+                  <button onClick="{{j.go}}" style="height: 38px; padding: 0 12px; border-radius: 19px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; background: #FFFFFF; color: #1E4FD8; border: 1px solid #C9D7FA">+ {{j.label}}</button>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <label for="extra" style="font-size: 12.5px; font-weight: 600; color: #3A4556">Anything else? Certificates, projects, volunteering, languages…</label>
+                <div style="position: relative">
+                  <textarea id="extra" rows="3" placeholder="e.g. Google IT Support certificate, I volunteer teaching kids to code" value="{{extra}}" onChange="{{onExtra}}" style="width: 100%; box-sizing: border-box; resize: none; border-radius: 12px; border: 1.5px solid #D3D9E3; background: #FFFFFF; padding: 12px 56px 12px 12px; font-family: inherit; font-size: 14px; line-height: 20px; color: #0B1626"></textarea>
+                  <button aria-label="Answer by voice" onClick="{{voiceFill}}" style="position: absolute; right: 8px; top: 8px; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; background: #1E4FD8; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></button>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{showDone}}" hint-placeholder-val="{{false}}">
+            <p role="status" style="margin: 0; padding: 10px 12px; border-radius: 10px; background: #E3F3F0; color: #0B5F54; font-size: 13.5px; font-weight: 600">Great, your profile is complete. Tap below to continue.</p>
+          </sc-if>
+        </section>
+      </div>
+    </sc-if>
+  </div>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 20px 34px; display: flex; gap: 10px; background: #F5F7FA; border-top: 1px solid #E3E7ED">
+    <button onClick="{{back}}" aria-disabled="{{firstStr}}" style="{{backStyle}}">Back</button>
+    <sc-if value="{{notSummary}}" hint-placeholder-val="{{true}}">
+      <button onClick="{{next}}" style="flex: 1; height: 52px; border-radius: 14px; border: 0; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 600; background: #1E4FD8; color: #FFFFFF">{{nextLabel}}</button>
+    </sc-if>
+    <sc-if value="{{isSummary}}" hint-placeholder-val="{{false}}">
+      <a href="Main.dc.html" style="flex: 1; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; font-weight: 600; background: #1E4FD8; color: #FFFFFF">Go to Welcome · Sync</a>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 0,
+      a: {
+        status: { 'PostSecondary': true },
+        situation: { 'Looking for work': true, 'Study part-time': true },
+        skills: { 'Coding': true, 'Problem solving': true, 'Teamwork': true, 'Data & spreadsheets': true },
+        passion: { 'Technology': true, 'Gaming': true },
+        current: { 'Retail & service': true },
+        dream: { 'Software Engineer': true },
+        values: { 'Remote work': true, 'Fast growth': true }
+      }
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const qs = [
+      { id: 'status', label: 'Status', single: true, title: 'Where are you starting from?', help: 'This shapes everything we suggest next.', opts: ['High school', 'PostSecondary', 'Change career', 'Already working in my field'] },
+      { id: 'situation', label: 'Situation', title: 'What is your aim?', help: 'So we can fit your plan around your life.', opts: ['Study full-time', 'Study part-time', 'Work full-time', 'Work part-time', 'Looking for work', 'Caring for family', 'New to the country'] },
+      { id: 'skills', label: 'Skills', title: 'What skills do you already have?', help: "Include anything: school, jobs, hobbies or volunteering.", opts: ['Coding', 'Problem solving', 'Data & spreadsheets', 'Design', 'Writing', 'Public speaking', 'Teamwork', 'Leadership', 'Customer service', 'Languages'] },
+      { id: 'passion', label: 'Passions', title: 'What are you passionate about?', help: 'What do you enjoy so much you lose track of time?', opts: ['Technology', 'Helping people', 'Creativity & art', 'Science', 'Business', 'Environment', 'Health', 'Education', 'Gaming', 'Sports'] },
+      { id: 'current', label: 'Current career', title: 'What field are you in now?', help: 'Pick your current or most recent job area.', opts: ['None yet', 'Tech / IT', 'Retail & service', 'Healthcare', 'Finance', 'Education', 'Engineering', 'Creative & media'] },
+      { id: 'dream', label: 'Dream career', title: "What's your dream career?", help: "Not sure? That's fine, pick what sounds exciting.", opts: ['Software Engineer', 'Data Scientist', 'Product Designer', 'Entrepreneur', 'Healthcare professional', 'Teacher', 'Marketing', 'Not sure yet'] },
+      { id: 'values', label: 'What matters', title: 'What matters most in your next role?', help: 'We use this to rank roles and companies for you.', opts: ['High salary', 'Remote work', 'Work-life balance', 'Making an impact', 'Fast growth', 'Stability'] }
+    ];
+    const total = qs.length;
+    const isSummary = s.step >= total;
+    const q = qs[Math.min(s.step, total - 1)];
+    const sel = s.a[q.id] || {};
+    const others = s.other || {};
+    const pickedOf = (id) => Object.keys(s.a[id] || {}).filter((k) => s.a[id][k]).map((k) => k === 'Other' ? (others[id] ? 'Other: ' + others[id] : 'Other') : k);
+    const otherHints = { status: 'e.g. Apprenticeship, returning to work', situation: 'e.g. Military veteran, freelancing', skills: 'e.g. Video editing, carpentry', passion: 'e.g. Music production, fashion', current: 'e.g. Hospitality, logistics', dream: 'e.g. Pilot, UX researcher', values: 'e.g. Flexible hours, travel' };
+    const answered = isSummary ? total : s.step;
+    return {
+      eyebrow: isSummary ? 'All done · profile ready' : 'About you · Question ' + (s.step + 1) + ' of ' + total,
+      answered: answered,
+      fillStyle: 'height: 6px; border-radius: 3px; background: #1E4FD8; width: ' + Math.round(((isSummary ? total : s.step + 1) / total) * 100) + '%',
+      notSummary: !isSummary,
+      isSummary: isSummary,
+      q: { ...q, hint: q.single ? 'Choose one' : 'Select all that apply' },
+      otherOn: !!sel['Other'],
+      otherText: others[q.id] || '',
+      otherPlaceholder: otherHints[q.id] || 'Type your answer',
+      onOther: (e) => this.setState({ other: { ...others, [q.id]: e.target.value } }),
+      opts: q.opts.concat(['Other']).map((o) => {
+        const on = !!sel[o];
+        return {
+          label: o,
+          role: q.single ? 'radio' : 'checkbox',
+          checked: String(on),
+          toggle: () => this.setState({ a: { ...s.a, [q.id]: q.single ? { [o]: true } : { ...sel, [o]: !on } } }),
+          style: 'display: flex; align-items: center; gap: 10px; min-height: 58px; padding: 12px; border-radius: 12px; cursor: pointer; text-align: left; font-family: inherit; background: ' + (on ? '#F3F6FE' : '#FFFFFF') + '; border: ' + (on ? '2px solid #1E4FD8' : '1px solid #D3D9E3'),
+          box: 'width: 22px; height: 22px; flex-shrink: 0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border-radius: ' + (q.single ? '50%' : '6px') + '; ' + (on ? 'background: #1E4FD8; border: 2px solid #1E4FD8' : 'background: #FFFFFF; border: 2px solid #B9C3D3')
+        };
+      }),
+      summary: qs.map((qq, i) => {
+        const items = pickedOf(qq.id);
+        return { label: qq.label, items: items.length ? items : ['Not answered'], editLabel: 'Edit ' + qq.label, edit: () => this.setState({ step: i }) };
+      }),
+      firstStr: String(s.step === 0),
+      backStyle: 'width: 100px; height: 52px; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 600; background: #FFFFFF; border: 1px solid #D3D9E3; color: ' + (s.step === 0 ? '#5E6878' : '#0B1626') + '; opacity: ' + (s.step === 0 ? '0.6' : '1'),
+      back: () => s.step > 0 && this.setState({ step: s.step - 1 }),
+      next: () => this.setState({ step: s.step + 1 }),
+      nextLabel: s.step === total - 1 ? 'See my profile' : 'Next',
+      moreYes: String(s.more === 'yes'),
+      moreNo: String(s.more === 'no'),
+      showMore: s.more === 'yes',
+      showDone: s.more === 'no',
+      pickYes: () => this.setState({ more: 'yes' }),
+      pickNo: () => this.setState({ more: 'no' }),
+      yesStyle: 'height: 48px; border-radius: 12px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; ' + (s.more === 'yes' ? 'background: #1E4FD8; color: #FFFFFF; border: 1px solid #1E4FD8' : 'background: #FFFFFF; color: #0B1626; border: 1px solid #D3D9E3'),
+      noStyle: 'height: 48px; border-radius: 12px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; ' + (s.more === 'no' ? 'background: #0B2545; color: #FFFFFF; border: 1px solid #0B2545' : 'background: #FFFFFF; color: #0B1626; border: 1px solid #D3D9E3'),
+      jumps: [
+        { label: 'Skills', go: () => this.setState({ step: 2 }) },
+        { label: 'Passions', go: () => this.setState({ step: 3 }) },
+        { label: 'Dream careers', go: () => this.setState({ step: 5 }) },
+        { label: 'What matters', go: () => this.setState({ step: 6 }) }
+      ],
+      extra: s.extra || '',
+      onExtra: (e) => this.setState({ extra: e.target.value }),
+      voiceFill: () => this.setState({ extra: 'I have a Google IT Support certificate and I volunteer teaching kids to code on weekends.' })
+    };
+  }
+}
+</script>
+</body>
+</html>

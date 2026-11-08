@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI analysis</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 106px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 20px">
+    <header style="display: flex; align-items: center; gap: 12px">
+      <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E3E7ED; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #0B1626">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+      </a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; color: #1E4FD8; letter-spacing: 0.4px; text-transform: uppercase">Step 2 of 3 · Analysis</p>
+    </header>
+
+    <section style="background: #0B2545; border-radius: 22px; padding: 24px 20px; display: flex; align-items: center; gap: 20px; color: #FFFFFF">
+      <div style="position: relative; width: 112px; height: 112px; flex-shrink: 0">
+        <svg role="img" aria-label="Analysis 72 percent complete" width="112" height="112" viewBox="0 0 112 112"><circle cx="56" cy="56" r="48" fill="none" stroke="#1D3B66" stroke-width="10"></circle><circle cx="56" cy="56" r="48" fill="none" stroke="#5BC0B0" stroke-width="10" stroke-linecap="round" stroke-dasharray="217 302" transform="rotate(-90 56 56)"></circle></svg>
+        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+          <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 28px; font-weight: 800">72%</span>
+          <span style="font-size: 11px; color: #B8C6DB">analyzing</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 20px; line-height: 26px; font-weight: 700">Reading your story</h1>
+        <p style="margin: 0; font-size: 13.5px; line-height: 19px; color: #C9D4E5">Resume and LinkedIn matched against 400+ career paths.</p>
+      </div>
+    </section>
+
+    <section aria-label="Analysis steps" style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 18px; padding: 6px 16px">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+        <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-bottom: 1px solid #EEF1F5">
+          <sc-if value="{{s.done}}" hint-placeholder-val="{{true}}">
+            <div style="width: 26px; height: 26px; border-radius: 50%; background: #0F7A6C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></div>
+          </sc-if>
+          <sc-if value="{{s.active}}" hint-placeholder-val="{{false}}">
+            <div style="width: 26px; height: 26px; border-radius: 50%; border: 3px solid #E8EEFC; border-top-color: #1E4FD8; box-sizing: border-box"></div>
+          </sc-if>
+          <sc-if value="{{s.pending}}" hint-placeholder-val="{{false}}">
+            <div style="width: 26px; height: 26px; border-radius: 50%; border: 2px solid #D3D9E3; box-sizing: border-box"></div>
+          </sc-if>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+            <span style="font-size: 14.5px; font-weight: 600; color: {{s.color}}">{{s.label}}</span>
+            <span style="font-size: 12.5px; color: #5E6878">{{s.detail}}</span>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15px; font-weight: 700">Skills we found</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{skills}}" as="k" hint-placeholder-count="8">
+          <span style="height: 32px; padding: 0 12px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E3E7ED; font-size: 13px; font-weight: 500; color: #3A4556; display: flex; align-items: center">{{k}}</span>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+  </div>
+
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 34px">
+    <a href="Timeline.dc.html" style="height: 52px; border-radius: 14px; background: #1E4FD8; color: #FFFFFF; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none">Continue</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const raw = [
+      { label: 'Resume parsed', detail: '2 roles · 3 projects · B.Sc. Computer Science', st: 'done' },
+      { label: 'LinkedIn synced', detail: '14 skills · 2 certifications', st: 'done' },
+      { label: 'Mapping your skills', detail: 'Comparing with live job postings', st: 'active' },
+      { label: 'Matching career paths', detail: 'Ranking by fit and demand', st: 'pending' },
+      { label: 'Finding alumni', detail: 'People from your school in each field', st: 'pending' }
+    ];
+    return {
+      steps: raw.map((s) => ({ ...s, done: s.st === 'done', active: s.st === 'active', pending: s.st === 'pending', color: s.st === 'pending' ? '#5E6878' : '#0B1626' })),
+      skills: ['Python', 'Java', 'SQL', 'REST APIs', 'Git', 'Linux', 'Data structures', 'Teamwork']
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Splash.dc.html": { "h": 844, "is_interactive": true, "title": "00 Start · Splash", "w": 390, "x": -1410, "y": 0 },
+    "Background.dc.html": { "h": 844, "is_interactive": true, "title": "00a Your background", "w": 390, "x": -940, "y": 0 },
+    "Interests.dc.html": { "h": 844, "is_interactive": true, "title": "00 About you · Interests", "w": 390, "x": -470, "y": 0 },
+    "Analyzing.dc.html": { "h": 844, "is_interactive": true, "title": "02 AI analysis", "w": 390, "x": 470, "y": 0 },
+    "CareerDetail.dc.html": { "h": 844, "is_interactive": true, "title": "05 Career path + alumni", "w": 390, "x": 470, "y": 1210 },
+    "Checklist.dc.html": { "h": 844, "is_interactive": true, "title": "07 Roadmap checklist", "w": 390, "x": 0, "y": 2420 },
+    "DailyDrop.dc.html": { "h": 844, "is_interactive": true, "title": "06 Events", "w": 390, "x": 940, "y": 1210 },
+    "Feedback.dc.html": { "h": 844, "is_interactive": true, "title": "08 Event feedback", "w": 390, "x": 470, "y": 2420 },
+    "StudentHome.dc.html": { "h": 844, "is_interactive": true, "title": "04b Home · High school", "w": 390, "x": -470, "y": 1210 },
+    "Home.dc.html": { "h": 844, "is_interactive": true, "title": "04 Home", "w": 390, "x": 0, "y": 1210 },
+    "Main.dc.html": { "h": 844, "is_interactive": true, "title": "01 Welcome · Sync", "w": 390, "x": 0, "y": 0 },
+    "Progress.dc.html": { "h": 844, "is_interactive": true, "title": "09 Progress", "w": 390, "x": 940, "y": 2420 },
+    "Timeline.dc.html": { "h": 844, "is_interactive": true, "title": "03 Set your timeline", "w": 390, "x": 940, "y": 0 }
+  },
+  "createdOnFiles": { "at": "2026-11-07T12:00:00Z", "v": 1 },
+  "designSystems": [],
+  "launch": { "view": "canvas" },
+  "notes": {
+    "row1": { "kind": "title1", "maxW": 2740, "text": "Onboarding — start, background, interests, sync, analyze, timeline", "w": 240, "x": -1410, "y": -300 },
+    "row2": { "kind": "title1", "maxW": 1800, "text": "Discover — home (high school / grad), careers, alumni, events", "w": 240, "x": -470, "y": 910 },
+    "row3": { "kind": "title1", "maxW": 1330, "text": "Grow — checklist, feedback, readiness", "w": 240, "x": 0, "y": 2120 }
+  },
+  "order": [
+    "Splash.dc.html",
+    "Background.dc.html",
+    "Interests.dc.html",
+    "Main.dc.html",
+    "Analyzing.dc.html",
+    "Timeline.dc.html",
+    "StudentHome.dc.html",
+    "Home.dc.html",
+    "CareerDetail.dc.html",
+    "DailyDrop.dc.html",
+    "Checklist.dc.html",
+    "Feedback.dc.html",
+    "Progress.dc.html"
+  ],
+  "pages": [],
+  "title": "CareerPath Mobile App"
+}

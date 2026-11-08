@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Set your timeline</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 106px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 20px">
+    <header style="display: flex; align-items: center; gap: 12px">
+      <a href="Analyzing.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E3E7ED; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #0B1626">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+      </a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; color: #1E4FD8; letter-spacing: 0.4px; text-transform: uppercase">Step 3 of 3 · Timeline</p>
+    </header>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -0.5px">When do you want to start your career?</h1>
+      <p style="margin: 0; font-size: 14.5px; line-height: 21px; color: #5E6878">We'll pace your checklist, events and alumni intros to this date.</p>
+    </div>
+
+    <div role="radiogroup" aria-label="Start date" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <sc-for list="{{options}}" as="o" hint-placeholder-count="4">
+        <button role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="{{o.style}}">
+          <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 18px; font-weight: 700">{{o.label}}</span>
+          <span style="font-size: 12.5px; color: #5E6878">{{o.date}}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <section style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15px; font-weight: 700">Target role</h2>
+        <p style="margin: 0; font-size: 13px; color: #5E6878">Suggested from your resume, LinkedIn and interests.</p>
+      </div>
+      <div role="radiogroup" aria-label="Target role" style="display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{roles}}" as="r" hint-placeholder-count="3">
+          <button role="radio" aria-checked="{{r.checked}}" onClick="{{r.pick}}" style="{{r.style}}">
+            <div style="display: flex; align-items: center; gap: 10px; width: 100%">
+              <span style="{{r.radio}}"><span style="{{r.dot}}"></span></span>
+              <span style="flex: 1; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15.5px; font-weight: 700; color: #0B1626">{{r.label}}</span>
+              <span style="height: 24px; padding: 0 8px; border-radius: 12px; background: {{r.badgeBg}}; color: {{r.badgeFg}}; font-size: 12px; font-weight: 700; display: flex; align-items: center">{{r.match}} match</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; padding-left: 30px">
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: #0B5F54">Why you fit</span>
+              <span style="font-size: 13.5px; line-height: 19px; color: #3A4556">{{r.why}}</span>
+              <span style="font-size: 12.5px; line-height: 18px; color: #9A4508; font-weight: 600">To build: {{r.gap}}</span>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15px; font-weight: 700">Hours per week you can invest</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{hours}}" as="h" hint-placeholder-count="3">
+          <button aria-pressed="{{h.checked}}" onClick="{{h.pick}}" style="{{h.style}}">{{h.label}}</button>
+        </sc-for>
+      </div>
+    </section>
+
+    <div style="background: #E3F3F0; border-radius: 14px; padding: 14px; display: flex; gap: 10px; align-items: flex-start">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F7A6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+      <p style="margin: 0; font-size: 13.5px; line-height: 19px; color: #0B4F46">{{summary}}</p>
+    </div>
+  </div>
+  </div>
+
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 34px">
+    <a href="Home.dc.html" style="height: 52px; border-radius: 14px; background: #1E4FD8; color: #FFFFFF; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none">Build my plan</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { when: '6m', role: 'Backend Engineer', hrs: '10h' };
+  }
+  renderVals() {
+    const s = this.state;
+    const card = (on) => 'display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px; min-height: 76px; border-radius: 14px; cursor: pointer; text-align: left; font-family: inherit; color: #0B1626; background: ' + (on ? '#E8EEFC' : '#FFFFFF') + '; border: ' + (on ? '2px solid #1E4FD8' : '1px solid #E3E7ED');
+    const pill = (on) => 'height: 40px; padding: 0 16px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: 13.5px; font-weight: 600; background: ' + (on ? '#0B2545' : '#FFFFFF') + '; color: ' + (on ? '#FFFFFF' : '#3A4556') + '; border: ' + (on ? '1px solid #0B2545' : '1px solid #D3D9E3');
+    const opts = [
+      { id: '3m', label: '3 months', date: 'By Feb 2027' },
+      { id: '6m', label: '6 months', date: 'By May 2027' },
+      { id: '12m', label: '12 months', date: 'By Nov 2027' },
+      { id: 'custom', label: 'Pick a date', date: 'Choose exact date' }
+    ];
+    const roleData = [
+      { label: 'Backend Engineer', match: '92%', badgeBg: '#E3F3F0', badgeFg: '#0B5F54', why: 'Your Java and SQL projects, the REST API work in your internship and your love of building things people use line up with most backend job posts.', gap: 'Docker, system design' },
+      { label: 'Data Engineer', match: '85%', badgeBg: '#E8EEFC', badgeFg: '#1E4FD8', why: 'Strong SQL and Python plus your data structures coursework fit data pipeline roles, and you picked Data & AI as an interest.', gap: 'Spark, ETL tools' },
+      { label: 'Cloud Engineer', match: '78%', badgeBg: '#FDF1E3', badgeFg: '#9A4508', why: 'Your Linux and Git experience and the app you deployed for your club are a solid base for running systems in the cloud.', gap: 'AWS certification, Kubernetes' }
+    ];
+    const roles = roleData.map((r) => r.label);
+    const hrs = ['5h', '10h', '15h+'];
+    const pickedOpt = opts.find((o) => o.id === s.when);
+    return {
+      options: opts.map((o) => ({ ...o, checked: String(o.id === s.when), style: card(o.id === s.when), pick: () => this.setState({ when: o.id }) })),
+      roles: roleData.map((r) => {
+        const on = r.label === s.role;
+        return {
+          ...r,
+          checked: String(on),
+          pick: () => this.setState({ role: r.label }),
+          style: 'display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 14px; cursor: pointer; text-align: left; font-family: inherit; background: ' + (on ? '#F3F6FE' : '#FFFFFF') + '; border: ' + (on ? '2px solid #1E4FD8' : '1px solid #E3E7ED'),
+          radio: 'width: 20px; height: 20px; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 2px solid ' + (on ? '#1E4FD8' : '#B9C3D3'),
+          dot: 'width: 10px; height: 10px; border-radius: 50%; background: ' + (on ? '#1E4FD8' : 'transparent')
+        };
+      }),
+      hours: hrs.map((h) => ({ label: h, checked: String(h === s.hrs), style: pill(h === s.hrs) + '; width: 100%', pick: () => this.setState({ hrs: h }) })),
+      summary: s.role + ' · ' + pickedOpt.label + ' · ' + s.hrs + ' a week. We will build a month-by-month checklist with events and people to meet.'
+    };
+  }
+}
+</script>
+</body>
+</html>

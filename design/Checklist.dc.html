@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Roadmap checklist</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163DAA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F7FA; font-family: Inter, system-ui, sans-serif; color: #0B1626; box-sizing: border-box">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 84px; overflow-y: auto; scrollbar-width: none; padding-bottom: 24px; box-sizing: border-box">
+  <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 16px">
+    <header style="display: flex; align-items: flex-end; justify-content: space-between">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 13px; color: #5E6878">Backend Engineer · 6-month plan</span>
+        <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.5px">Your roadmap</h1>
+      </div>
+      <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15px; font-weight: 700; color: #0F7A6C">{{doneCount}}/{{total}} done</span>
+    </header>
+
+    <section aria-label="Timeline" style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 14px 14px 12px">
+      <div style="position: relative; display: flex; justify-content: space-between">
+        <div style="position: absolute; left: 8px; right: 8px; top: 7px; height: 2px; background: #E3E7ED"></div>
+        <div style="position: absolute; left: 8px; width: 8%; top: 7px; height: 2px; background: #1E4FD8"></div>
+        <sc-for list="{{months}}" as="m" hint-placeholder-count="7">
+          <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 34px">
+            <span style="width: 16px; height: 16px; border-radius: 50%; box-sizing: border-box; background: {{m.dot}}; border: 3px solid {{m.ring}}"></span>
+            <span style="font-size: 11px; font-weight: {{m.weight}}; color: {{m.color}}">{{m.label}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+      <section style="display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 16px; font-weight: 700">{{g.title}}</h2>
+          <span style="font-size: 12.5px; color: #5E6878">{{g.meta}}</span>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 0 12px">
+          <sc-for list="{{g.items}}" as="it" hint-placeholder-count="4">
+            <div style="display: flex; align-items: center; gap: 10px; min-height: 56px; border-bottom: 1px solid #EEF1F5">
+              <button role="checkbox" aria-checked="{{it.checked}}" aria-label="{{it.title}}" onClick="{{it.toggle}}" style="width: 44px; height: 44px; margin-left: -9px; border: 0; background: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+                <span style="{{it.boxStyle}}">
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg>
+                </span>
+              </button>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; padding: 8px 0">
+                <span style="font-size: 14px; font-weight: 600; color: {{it.titleColor}}; text-decoration: {{it.strike}}">{{it.title}}</span>
+                <span style="font-size: 12px; color: #5E6878">{{it.meta}}</span>
+              </div>
+              <sc-if value="{{it.feedback}}" hint-placeholder-val="{{false}}">
+                <a href="Feedback.dc.html" style="height: 30px; padding: 0 10px; border-radius: 15px; background: #FDF1E3; color: #9A4508; font-size: 12px; font-weight: 700; display: flex; align-items: center; text-decoration: none; flex-shrink: 0">Add feedback</a>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+
+    <section style="background: #FFFFFF; border: 1px solid #E3E7ED; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; gap: 12px; align-items: flex-start">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #E8EEFC; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4FD8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M12 11v6M9 14h6"></path></svg>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 16px; font-weight: 700">Finished something new?</h2>
+          <p style="margin: 0; font-size: 13.5px; line-height: 19px; color: #5E6878">Log what you did and the skills you gained. We'll add it to your resume and update your readiness.</p>
+        </div>
+      </div>
+      <a href="Feedback.dc.html" style="height: 50px; border-radius: 12px; background: #1E4FD8; color: #FFFFFF; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add in my resume</a>
+    </section>
+  </div>
+  </div>
+
+  <nav aria-label="Primary" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #FFFFFF; border-top: 1px solid #E3E7ED; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; box-sizing: border-box">
+    <a href="Home.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="DailyDrop.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Events</a>
+    <a href="Checklist.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #1E4FD8; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"></path></svg>Roadmap</a>
+    <a href="Progress.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V4M19 20v-6"></path></svg>Progress</a>
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; min-height: 44px; text-decoration: none; color: #5E6878; font-size: 11px; font-weight: 500"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { done: { a: true, b: true } };
+  }
+  renderVals() {
+    const done = this.state.done;
+    const raw = [
+      { g: 'November', id: 'a', title: 'Ship REST API portfolio project', meta: 'Project · GitHub linked' },
+      { g: 'November', id: 'b', title: 'Cloud Basics workshop', meta: 'Event · Attended Nov 3', feedback: true },
+      { g: 'November', id: 'c', title: 'Connect with 3 backend alumni', meta: 'People · 2 of 3 connected' },
+      { g: 'November', id: 'd', title: 'API Build Weekend hackathon', meta: 'Event · Nov 14–15' },
+      { g: 'December', id: 'e', title: 'Docker & Kubernetes certificate', meta: 'Course · ~12 hrs' },
+      { g: 'December', id: 'f', title: 'Deploy your API to the cloud', meta: 'Project · Builds AWS' },
+      { g: 'December', id: 'g', title: 'Backend Engineers Night', meta: 'Event · Dec 11' },
+      { g: 'January', id: 'h', title: 'Add a CI pipeline with automated tests', meta: 'Project · ~6 hrs' },
+      { g: 'January', id: 'i', title: 'Ask 2 alumni for referrals', meta: 'People · after your coffee chats' },
+      { g: 'January', id: 'j', title: 'Winter Dev Hackathon', meta: 'Event · Jan 23–24' },
+      { g: 'February', id: 'k', title: 'System design basics course', meta: 'Course · ~10 hrs' },
+      { g: 'February', id: 'l', title: 'Practice design: a URL shortener', meta: 'Project · caching, databases' },
+      { g: 'February', id: 'm', title: 'Mock interview with a mentor', meta: 'People · coding + design round' },
+      { g: 'March', id: 'n', title: 'Tailor resume and LinkedIn to backend roles', meta: 'Profile · use "Generate my resume"' },
+      { g: 'March', id: 'o', title: 'Apply to 10–15 roles a week', meta: 'Applications · junior & new-grad' },
+      { g: 'March', id: 'p', title: 'Tech Careers Fair', meta: 'Event · Mar 18' },
+      { g: 'April', id: 'q', title: 'Complete technical interviews', meta: 'Interviews · review your notes first' },
+      { g: 'April', id: 'r', title: 'Follow up with recruiters and referrers', meta: 'People · within 48 hrs' },
+      { g: 'May', id: 's', title: 'Compare offers and negotiate', meta: 'Milestone · ask alumni for advice' },
+      { g: 'May', id: 't', title: 'Accept your first backend role', meta: 'Goal · Backend Engineer' }
+    ];
+    const items = raw.map((r) => {
+      const on = !!done[r.id];
+      return {
+        ...r,
+        checked: String(on),
+        feedback: !!r.feedback,
+        titleColor: on ? '#5E6878' : '#0B1626',
+        strike: on ? 'line-through' : 'none',
+        boxStyle: 'width: 24px; height: 24px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; ' + (on ? 'background: #0F7A6C; border: 2px solid #0F7A6C' : 'background: #FFFFFF; border: 2px solid #B9C3D3'),
+        toggle: () => this.setState({ done: { ...done, [r.id]: !on } })
+      };
+    });
+    const groupOf = (name, meta) => ({ title: name, meta: meta, items: items.filter((i) => i.g === name) });
+    const monthNames = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'];
+    const doneCount = Object.values(done).filter(Boolean).length;
+    return {
+      doneCount: doneCount,
+      total: raw.length,
+      months: monthNames.map((m, i) => ({
+        label: m,
+        dot: i === 0 ? '#1E4FD8' : (i === 6 ? '#0F7A6C' : '#FFFFFF'),
+        ring: i === 0 ? '#C9D7FA' : (i === 6 ? '#BFE3DC' : '#D3D9E3'),
+        weight: i === 0 || i === 6 ? '700' : '500',
+        color: i === 0 ? '#1E4FD8' : (i === 6 ? '#0B5F54' : '#5E6878')
+      })),
+      groups: [
+        groupOf('November', 'This month · now'),
+        groupOf('December', 'Next month'),
+        groupOf('January', 'Docker, CI and referrals'),
+        groupOf('February', 'System design'),
+        groupOf('March', 'Start applying'),
+        groupOf('April', 'Interviews'),
+        groupOf('May', 'Target month')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
